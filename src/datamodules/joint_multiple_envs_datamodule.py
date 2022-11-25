@@ -48,17 +48,7 @@ class PL_JointMultipleEnvs(LightningDataModule):
         pass
 
     def setup(self, stage=None):
-        # self.transform_train = A.Compose(
-        #     [
-        #         A.ShiftScaleRotate(shift_limit=0.05, scale_limit=0.05, rotate_limit=15, p=0.5),
-        #         ToTensorV2
-        #     ]
-        # )
-        # self.transform_val = A.Compose(
-        #     [
-        #         ToTensorV2
-        #     ]
-        # )
+
         self.transform_train = None
         self.transform_val = None
         # called on every GPU
@@ -183,17 +173,7 @@ class PL_JointMultipleEnvsCV(LightningDataModule):
         pass
 
     def setup(self, stage=None):
-        # self.transform_train = A.Compose(
-        #     [
-        #         A.ShiftScaleRotate(shift_limit=0.05, scale_limit=0.05, rotate_limit=15, p=0.5),
-        #         ToTensorV2
-        #     ]
-        # )
-        # self.transform_val = A.Compose(
-        #     [
-        #         ToTensorV2
-        #     ]
-        # )
+
         self.transform_train = None
         self.transform_val = None
         # called on every GPU

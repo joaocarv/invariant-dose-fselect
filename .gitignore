@@ -1,0 +1,16 @@
+
+.DS_Store
+configs/.DS_Store
+configs/datamodule/.DS_Store
+configs/experiment/.DS_Store
+configs/model/.DS_Store
+configs_class/.DS_Store
+configs_fs/.DS_Store
+data/.DS_Store
+data/cv/.DS_Store
+logs/.DS_Store
+src/.DS_Store
+src/datamodules/.DS_Store
+src/feature_selection/.DS_Store
+src/models/.DS_Store
+src/models/components/.DS_Store

@@ -44,8 +44,7 @@ def main(config: DictConfig):
     ds_train_pid = np.empty((0))
     ds_train_label = np.empty((0))
     for i, b in enumerate(ds_multi_env_train):
-        # print(b)
-        # print(torch.tensor(b[0])[None,:].shape)
+        
         f1 = lm_model.encoder(torch.tensor(b[0])[None,:]).detach().numpy()
         f2 = lm_model.encoder(torch.tensor(b[1])[None,:]).detach().numpy()
 
@@ -53,8 +52,7 @@ def main(config: DictConfig):
         ds_train_features_2 = np.concatenate((ds_train_features_2, f2))
         ds_train_pid = np.concatenate((ds_train_pid,np.array(b[3])[None]))
         ds_train_label = np.concatenate((ds_train_label, np.array(b[2])[None]))
-        # np.save(os.path.join(path_ds,'p'+pat_id+'_'+str(1)+'_'+str(i)+'.npy'), img1)
-        # np.save(os.path.join(path_ds,'p'+pat_id+'_'+str(2)+'_'+str(i)+'.npy'), img2)
+        
 
     ds_val_features_1 = np.empty((0, 2048))
     ds_val_features_2 = np.empty((0, 2048))
@@ -68,8 +66,7 @@ def main(config: DictConfig):
         ds_val_features_2 = np.concatenate((ds_val_features_2, f2))
         ds_val_pid = np.concatenate((ds_val_pid,np.array(b[3])[None]))
         ds_val_label = np.concatenate((ds_val_label, np.array(b[2])[None]))
-        # np.save(os.path.join(path_ds,'p'+pat_id+'_'+str(1)+'_'+str(i)+'.npy'), img1)
-        # np.save(os.path.join(path_ds,'p'+pat_id+'_'+str(2)+'_'+str(i)+'.npy'), img2)
+        
 
     # Select Features
     print('Select features')
@@ -107,26 +104,11 @@ def main(config: DictConfig):
         pairs_features_paths.append([sf_dir,selected_features])
 
 
-    # for fs_algo,nb_features in itertools.product(algos,nb_features_l):
-    #
-    #     selected_features = feature_selection.selected_features(fs_type=fs_algo,
-    #                                         nb_features=nb_features)
-    #     sf_dir = os.path.join(path_ds, fs_algo+'_'+str(nb_features))
-    #     os.makedirs(sf_dir,exist_ok=True)
-    #
-    #     sf_path = os.path.join(sf_dir, 'selected_features.npy')
-    #     np.save(sf_path,
-    #             np.array(selected_features))
-    #
-    #     pairs_features_paths.append([sf_dir,selected_features])
-
     # Prepare Classifier Datasets
     print('Setup selected features dataset')
     dm_classifier.prepare_data()
     dm_classifier.setup()
-    #
-    # path_ds = '/cluster/scratch/jcarvalho/multi-dose-fselect/logs/features/'+experiment_name+'/train/'
-    # os.makedirs(path_ds,exist_ok=True)
+    
     for i, b in enumerate(dm_classifier.train_dataloader()):
         # Extract feature vector and target
         features = lm_model.encoder(b[0])
@@ -140,8 +122,7 @@ def main(config: DictConfig):
 
 
 
-    # path_ds = '/cluster/scratch/jcarvalho/multi-dose-fselect/logs/features/'+experiment_name+'/val'
-    # os.makedirs(path_ds,exist_ok=True)
+    
     for i, b in enumerate(dm_classifier.val_dataloader()):
         # Extract feature vector and target
         features = lm_model.encoder(b[0])
@@ -153,8 +134,7 @@ def main(config: DictConfig):
             np.save(os.path.join(path_ds, str(i) + '.npy'),
                     np.array((features[:, selected_features].detach().numpy(), target), dtype=object))
 
-    # path_ds = '/cluster/scratch/jcarvalho/multi-dose-fselect/logs/features/'+experiment_name+'/test'
-    # os.makedirs(path_ds,exist_ok=True)
+
     for i, b in enumerate(dm_classifier.test_dataloader()):
         # Extract feature vector and target
         features = lm_model.encoder(b[0])

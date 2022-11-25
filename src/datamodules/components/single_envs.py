@@ -42,8 +42,6 @@ class SingleEnv(Dataset):
             patients_2 = [patients_selected[i] for i, label in enumerate(labels) if label == 2]
             patients_per_label = [len(patients_0), len(patients_2), len(patients_2)]
             samp0, samp1, samp2 = shiftvar2values(shiftvar, patients_per_label)
-            # print(len(patients_0),len(patients_2),len(patients_2))
-            # print(samp0, samp1, samp2)
             final_patients_selected = sample(patients_0, samp0) + sample(patients_1, samp1) + sample(patients_2, samp2)
             self.img_list = [file for file in self.img_list if
                              int(file.split('_' + env)[0][8:]) in final_patients_selected]
@@ -138,9 +136,7 @@ class SingleEnvCV(Dataset):
             patients_1 = [patients_selected_cv[i] for i, label in enumerate(labels_cv) if label == 1]
             patients_2 = [patients_selected_cv[i] for i, label in enumerate(labels_cv) if label == 2]
             patients_per_label = [len(patients_0),len(patients_2),len(patients_2)]
-            samp0,samp1,samp2 = shiftvar2values(shiftvar, patients_per_label)
-            # print(len(patients_0),len(patients_2),len(patients_2))
-            # print(samp0, samp1, samp2)
+
             final_patients_selected = sample(patients_0,samp0)+sample(patients_1,samp1)+sample(patients_2,samp2)
             self.img_list = [file for file in self.img_list if int(file.split('_'+env)[0][8:]) in final_patients_selected]
 

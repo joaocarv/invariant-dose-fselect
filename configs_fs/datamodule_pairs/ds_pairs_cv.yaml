@@ -4,7 +4,7 @@ dataset_train:
   env1: DET_A
   env2: DET_B
   resize: 128
-  extract_roi: True
+  extract_roi: False
   cv_fold: 1
   data_subset: train
   masked: False
@@ -15,7 +15,7 @@ dataset_val:
   env1: DET_A
   env2: DET_B
   resize: 128
-  extract_roi: True
+  extract_roi: False
   cv_fold: 1
   data_subset: val
   masked: False

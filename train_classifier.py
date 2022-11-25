@@ -21,6 +21,5 @@ def main(config: DictConfig):
     # Train model
     return train_classifier(config)
 
-
 if __name__ == "__main__":
     main()

@@ -57,12 +57,8 @@ class ClassifierFeatureSubset(LightningModule):
 
     def training_step(self, batch, batch_idx):
         z, y = batch
-        # print('TRAIN Z',z.shape)
-        # print('TRAIN Y',y.shape)
-        # print('TRAIN Y',y)
 
         logits = self.forward(z)
-        # print('TRAIN logits',logits)
 
 
         # training metrics
@@ -102,8 +98,6 @@ class ClassifierFeatureSubset(LightningModule):
     def validation_step(self, batch, batch_idx):
         z, y = batch
         logits = self.forward(z)
-        # print('VAL Z',z.shape)
-        # print('VAL Y',y)
 
         # training metrics
         return {"logits": logits, "target": y}
@@ -195,42 +189,12 @@ class ClassifierFeatureSubset(LightningModule):
         self.log('test/' + testloader_tag + '_precision', self.test_precision, on_step=False, on_epoch=True,
                  prog_bar=False, logger=True)
 
-        # Other metrics
-        # self.log('test/'+testloader_tag+'_acc', accuracy(preds, y), prog_bar=False, on_step=False, on_epoch=True)
-        # self.log('test/'+testloader_tag+'_auc', self.test_auc(preds, y), prog_bar=False, on_step=False, on_epoch=True)
-        # self.log('test/'+testloader_tag+'_f1', self.test_f1(preds, y), prog_bar=False, on_step=False, on_epoch=True)
-        # self.log('test/'+testloader_tag+'_mcc', self.test_mcc(preds, y), prog_bar=False, on_step=False, on_epoch=True)
-        # self.log('test/'+testloader_tag+'_kappa', self.test_kappa(preds, y), prog_bar=False, on_step=False, on_epoch=True)
-        # self.log('test/'+testloader_tag+'_sensitivity', self.test_sensitivity(preds, y), prog_bar=False, on_step=False, on_epoch=True)
-        # self.log('test/'+testloader_tag+'_specificity', self.test_specificity(preds, y), prog_bar=False, on_step=False, on_epoch=True)
-        # self.log('test/'+testloader_tag+'_precision', self.test_precision(preds, y), prog_bar=False, on_step=False, on_epoch=True)
-        # self.log(testloader_tag+'/confusion_matrix', self.confusion_matrix(preds,y), prog_bar=False, on_step=False, on_epoch=True)
 
         return {'logits': logits,
                 'predictions': preds,
                 'target': y,
                 'repres': z,
                 'testloader_tag': testloader_tag}
-
-    # def test_epoch_end(self, outputs):
-    #
-    #     # preds = cat([output['predictions'] for output in outputs])
-    #     # preds = preds.to('cpu').numpy()
-    #     # if len(outputs)==1:
-    #     y = cat([output['target'] for output in outputs])
-    #     y = y.to('cpu').numpy()
-    #     z = cat([output['repres'] for output in outputs])
-    #     z = z.to('cpu').numpy()
-    #     # x = cat([output['x'] for output in outputs])
-    #     # x_list = x.detach().to('cpu').numpy()
-    #
-    #     df = pd.DataFrame(z, columns=[str(i) for i in range(z.shape[1])])
-    #     df['target'] = [str(y) for y in y.tolist()]
-    #     cols = df.columns.tolist()
-    #     df = df[cols[-1:] + cols[:-1]]
-    #     # df['images'] = [wandb.Image(np.array(x).swapaxes(0, -1).swapaxes(0, 1)) for x in x_list]
-    #     # df = df[cols[-1:] + cols[:-1]]
-    #     self.logger.log_table('test/representations', dataframe=df)
 
     def configure_optimizers(self):
         optimizer = optim.Adam(self.parameters(), lr=self.learning_rate, weight_decay=self.weight_decay)

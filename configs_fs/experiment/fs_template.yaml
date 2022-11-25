@@ -8,8 +8,8 @@ data_dir: None
 name: exp2_shift24_raw_resnet50_B_AB_B
 ckpt_csv_path: logs/ckpt_exp.csv
 datamodule_class:
-  extract_roi: true
-  masked: true
+  extract_roi: false
+  masked: false
   train_env_1: DET_B
   train_env_2: DET_AB
   test_env: DET_B
@@ -20,27 +20,27 @@ datamodule_pairs:
     env1: DET_B
     env2: DET_AB
     resize: 128
-    extract_roi: true
+    extract_roi: false
     cv_fold: 1
     data_subset: train
-    masked: true
+    masked: false
   dataset_val:
     root_dir: ${data_dir}
     env1: DET_B
     env2: DET_AB
     resize: 128
-    extract_roi: true
+    extract_roi: false
     cv_fold: 1
     data_subset: val
-    masked: true
+    masked: false
 fs_algo:
   fs_type: correlation
 datamodule:
-  masked: true
+  masked: false
   train_env: DET_A
   val_env: DET_A
   test_env: DET_A
   batch_size: 32
   resize: 128
-  extract_roi: true
+  extract_roi: false
   cv_fold: 0

@@ -5,7 +5,7 @@ batch_size: 1
 num_workers: 4
 resize: 128
 pin_memory: False
-extract_roi: True
+extract_roi: False
 masked: False
 train_env_1: DET_A
 train_env_2: DET_B

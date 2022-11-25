@@ -15,10 +15,9 @@ class ClassiferFeatureSubset_Simple(LightningModule):
         self.learning_rate = lr
         self.weight_decay = weight_decay
 
-        #         self.val_kappa = CohenKappa(num_classes=3)
-        #         self.test_kappa = CohenKappa(num_classes=3)
-        self.val_kappa = Accuracy(num_classes=3)
-        self.test_kappa = Accuracy(num_classes=3)
+        self.val_kappa = CohenKappa(num_classes=3)
+        self.test_kappa = CohenKappa(num_classes=3)
+
 
     def forward(self, z):
         return self.classifer(z)

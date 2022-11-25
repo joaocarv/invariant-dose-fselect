@@ -2,12 +2,12 @@
 
 wandb:
   _target_: pytorch_lightning.loggers.wandb.WandbLogger
-  project: "multi-dose-fselect"
+  project: invariant_dose_fselect"
   name: ${name}
-  save_dir: "/cluster/scratch/jcarvalho"
+  save_dir: "/logs"
   offline: False # set True to store all logs only locally
   id: null # pass correct id to resume experiment!
-  entity: "jcarvalho"  # set to name of your wandb team
+  entity:  # set to name of your wandb team
   log_model: False
   prefix: ""
   job_type: "train"

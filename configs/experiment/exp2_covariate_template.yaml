@@ -40,7 +40,7 @@ datamodule:
   test_env: DET_A
   batch_size: 64
   resize: 128
-  extract_roi: True
+  extract_roi: False
   cv_fold: 0
   shiftvar_1: 1
   shiftvar_2: 5
