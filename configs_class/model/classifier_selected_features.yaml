@@ -1,0 +1,5 @@
+_target_: src.models.classifier_selected_features.ClassifierFeatureSubset
+
+lr: 0.001
+weight_decay: 0.0005
+output_size: 3

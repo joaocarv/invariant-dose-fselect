@@ -1,0 +1,5 @@
+_target_: src.datamodules.feature_vector_multi_envs_dm.PL_FeatureVector
+
+data_dir: ${data_dir} # data_dir is specified in config.yaml
+batch_size: 64
+num_workers: 4

@@ -1,0 +1,46 @@
+# @package _global_ 
+
+defaults:
+- override /datamodule_pairs: ds_pairs_cv.yaml
+- override /datamodule_class: joint_multiple_envs_cv_dm.yaml
+- override /fs_algo: random_selection.yaml
+data_dir: None
+name: exp2_shift24_raw_resnet50_B_AB_B
+ckpt_csv_path: logs/ckpt_exp.csv
+datamodule_class:
+  extract_roi: true
+  masked: true
+  train_env_1: DET_B
+  train_env_2: DET_AB
+  test_env: DET_B
+  cv_fold: 1
+datamodule_pairs:
+  dataset_train:
+    root_dir: ${data_dir}
+    env1: DET_B
+    env2: DET_AB
+    resize: 128
+    extract_roi: true
+    cv_fold: 1
+    data_subset: train
+    masked: true
+  dataset_val:
+    root_dir: ${data_dir}
+    env1: DET_B
+    env2: DET_AB
+    resize: 128
+    extract_roi: true
+    cv_fold: 1
+    data_subset: val
+    masked: true
+fs_algo:
+  fs_type: correlation
+datamodule:
+  masked: true
+  train_env: DET_A
+  val_env: DET_A
+  test_env: DET_A
+  batch_size: 32
+  resize: 128
+  extract_roi: true
+  cv_fold: 0

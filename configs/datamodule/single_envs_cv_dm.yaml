@@ -1,0 +1,13 @@
+_target_: src.datamodules.single_envs_datamodule.PL_SingleEnvCV
+
+data_dir: ${data_dir} # data_dir is specified in config.yaml
+batch_size: 64
+num_workers: 2
+resize: 256
+pin_memory: True
+extract_roi: True
+masked: False
+cv_fold: 0
+train_env: DET_A
+val_env: DET_A
+test_env: DET_B

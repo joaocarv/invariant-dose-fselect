@@ -1,0 +1,14 @@
+_target_: src.datamodules.single_envs_datamodule.PL_SingleEnv
+
+data_dir: ${data_dir} # data_dir is specified in config.yaml
+batch_size: 64
+num_workers: 2
+resize: 256
+pin_memory: True
+extract_roi: True
+masked: False
+train_env: DET_A
+val_env: DET_A
+test_env: DET_B
+val_split: 0.1
+test_split: 0.1

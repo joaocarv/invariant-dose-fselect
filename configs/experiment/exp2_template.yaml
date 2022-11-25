@@ -1,0 +1,51 @@
+# @package _global_
+
+# to execute this experiment run:
+# python run.py experiment=example_full.yaml
+
+defaults:
+  - override /trainer: dp.yaml # override trainer to null so it's not loaded from main config defaults...
+  - override /model: erm.yaml #mnist_model.yaml
+  - override /datamodule: joint_multiple_envs_cv_dm.yaml
+  - override /logger: wandb.yaml
+
+# we override default configurations with nulls to prevent them from loading at all
+# instead we define all modules and their paths directly in this config,
+# so everything is stored in one place
+
+#seed: 420
+data_dir: None
+name: None
+
+trainer:
+  fast_dev_run: False
+  gpus: 1
+  min_epochs: 1
+  max_epochs: 50
+  gradient_clip_val: 0.5
+
+model:
+  pretrained: False
+  fix_weights: False
+  output_size: 3
+  model: resnet_50
+  input_channels: 3
+  lr: 0.0001
+  weight_decay: 0.0001
+
+datamodule:
+  masked: False
+  train_env_1: DET_A
+  train_env_2: DET_AB
+  test_env: DET_A
+  batch_size: 64
+  resize: 128
+  extract_roi: True
+  cv_fold: 0
+
+
+logger:
+  wandb:
+    tags: ["test_single_env_simple", "uwu"]
+    notes: ""
+

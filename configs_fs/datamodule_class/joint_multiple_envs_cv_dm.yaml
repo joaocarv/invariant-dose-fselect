@@ -1,0 +1,14 @@
+_target_: src.datamodules.joint_multiple_envs_datamodule.PL_JointMultipleEnvsCV
+
+data_dir: ${data_dir} # data_dir is specified in config.yaml
+batch_size: 1
+num_workers: 4
+resize: 128
+pin_memory: False
+extract_roi: True
+masked: False
+train_env_1: DET_A
+train_env_2: DET_B
+test_env: DET_AB
+cv_fold: 1
+

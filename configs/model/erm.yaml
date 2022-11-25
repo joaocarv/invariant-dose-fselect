@@ -1,0 +1,7 @@
+_target_: src.models.erm.ERM
+
+model: resnet
+lr: 0.001
+output_size: 3
+weight_decay: 0.0005
+optimizer: adam

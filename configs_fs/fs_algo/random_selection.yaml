@@ -1,0 +1,3 @@
+_target_: src.feature_selection.FeatureSelection
+
+fs_type: random

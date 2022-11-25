@@ -1,0 +1,21 @@
+dataset_train:
+  _target_: src.datamodules.components.multi_envs.MultiEnvCV
+  root_dir: ${data_dir}
+  env1: DET_A
+  env2: DET_B
+  resize: 128
+  extract_roi: True
+  cv_fold: 1
+  data_subset: train
+  masked: False
+
+dataset_val:
+  _target_: src.datamodules.components.multi_envs.MultiEnvCV
+  root_dir: ${data_dir}
+  env1: DET_A
+  env2: DET_B
+  resize: 128
+  extract_roi: True
+  cv_fold: 1
+  data_subset: val
+  masked: False

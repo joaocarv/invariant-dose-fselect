@@ -1,0 +1,26 @@
+# @package _global_ 
+
+defaults:
+- override /trainer: dp.yaml
+- override /model: classifier_selected_features.yaml
+- override /datamodule: feature_vector_multi_envs_dm.yaml
+- override /logger: wandb.yaml
+name: classifer
+data_dir: PATH_TO_DATA_DIRECTORY
+trainer:
+  fast_dev_run: false
+  gpus: 1
+  min_epochs: 1
+  max_epochs: 10
+model:
+  lr: 0.001
+  weight_decay: 0.0005
+datamodule:
+  batch_size: 64
+  num_workers: 4
+logger:
+  wandb:
+    tags:
+    - test_single_env_simple
+    - uwu
+    notes: ''
