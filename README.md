@@ -10,7 +10,7 @@ We propose a novel methodology for selecting deep-learning models targeting pulm
 
 Our method overcomes X-ray dose-related sample distribution shifts and spurious correlations without relying on model retraining or computational intensive training schemes. 
 
-In all our settings, we beat the state of the art by at least 6% in the F1 score when the training and test dose diffe
+In all our settings, we beat the state of the art by at least 6% in the F1 score when the training and test dose difference. 
 
 ## Code Structure
 This project integrates hydra and pytorch lighnting for fast prototyping and reliable experiment replication. 
